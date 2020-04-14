@@ -1,0 +1,17 @@
+{
+  "name": "danboorushow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Lukas Sabatschus",
+  "dependencies": {
+    "cli-progress": "^3.7.0",
+    "jitson": "^1.0.0",
+    "pg": "^8.0.2",
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v17.3.0"
+  }
+}
