@@ -10,6 +10,7 @@
   "author": "Lukas Sabatschus",
   "dependencies": {
     "cli-progress": "^3.7.0",
+    "csv-writer": "^1.6.0",
     "jitson": "^1.0.0",
     "pg": "^8.0.2",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v17.3.0"
