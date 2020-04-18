@@ -104,3 +104,5 @@ dist
 .tern-port
 ratingsFull.csv
 ratings.csv
+files.json
+trainedModel.h5

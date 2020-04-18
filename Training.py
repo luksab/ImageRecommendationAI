@@ -66,13 +66,40 @@ def mean_pred(y_true, y_pred):
 def std_pred(y_true, y_pred):
     return K.std(y_pred)
 
+#model = keras.models.load_model('trainedModel.h5')
+
 # compile the model (should be done *after* setting layers to non-trainable)
 model.compile(optimizer='sgd', loss='mean_squared_error', 
-              metrics=[mean_pred, std_pred])
+              metrics=[mean_pred, std_pred]
+              )
 
-model.fit(x=train_generator,
-                    steps_per_epoch=10,
-                    epochs=10)
+from tensorflow import keras
+logdir = "logs/scalars/"# + datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
+
+
+model.fit(x=train_generator, steps_per_epoch=32,
+     epochs=10, 
+     #callbacks=[tensorboard_callback],
+     )
+
+for layer in base_model.layers:
+    layer.trainable = True
+
+model.compile(optimizer='sgd', loss='mean_squared_error', 
+              metrics=[mean_pred, std_pred]
+              )
+
+model.fit(x=train_generator, steps_per_epoch=32,
+     epochs=10, 
+     #callbacks=[tensorboard_callback],
+     )
+
+model.compile(optimizer='sgd', loss='mean_squared_error', 
+              #metrics=[mean_pred, std_pred]
+              )
+model.save('trainedModel.h5')
+
 
 import random
 import numpy as np
