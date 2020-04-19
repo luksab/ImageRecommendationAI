@@ -38,10 +38,10 @@ require('uWebSockets.js').App({}).ws('/*', {
             let msg = JSON.parse(message);
             switch (msg.type) {
                 case "request":
-                    ws.send(JSON.stringify({type:"response",data:(await pool.query('SELECT * FROM imgs WHERE ID = '+msg.id|0)).rows}));
+                    ws.send(JSON.stringify({ type: "response", data: (await pool.query('SELECT * FROM imgs WHERE ID = ' + msg.id | 0)).rows }));
                     break;
                 case "rate":
-                    await pool.query('UPDATE imgs set rating = '+msg.rating+' where id = '+msg.id);
+                        await pool.query("INSERT INTO userRatings (userID, id, rating) VALUES (" + msg.userid + "," + msg.id + "," + msg.rating + ")");
                 default:
                     break;
             }
